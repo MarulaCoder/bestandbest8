@@ -19,18 +19,19 @@
     </section>
 
     <div class="container">
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation" novalidate action="/file/upload" 
+        enctype="multipart/form-data" method="post">
             <div class="form-row">
                 <div class="col-md-3 mb-3">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                        <input type="file" class="custom-file-input" name="fileupload" id="fileupload" required>
+                        <label class="custom-file-label" for="fileupload">Choose file...</label>
                         <div class="invalid-feedback">Example invalid custom file feedback</div>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="validationCustom01" class="sr-only">File name</label>
-                    <input type="text" class="form-control" id="validationCustom01" placeholder="File name" required>
+                    <label for="filename" class="sr-only">File name</label>
+                    <input type="text" class="form-control" name="filename" id="filename" placeholder="File name" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -39,7 +40,7 @@
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">
-                            <input type="checkbox" id="invalidCheck">
+                                <input type="checkbox" name="tweetnow" id="tweetnow">
                             </span>
                         </div>
                         <input type="text" class="form-control" placeholder="Tweet Now?" aria-label="" aria-describedby="basic-addon1" disabled>

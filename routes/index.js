@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/about', (req, res) => {
-    res.render('about', {filename: null, message: null, error: null})
+    res.render('index', {filename: null, message: null, error: null})
 });
 
 router.get('/upload', (req, res) => {
