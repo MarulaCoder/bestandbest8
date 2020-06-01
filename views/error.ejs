@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body>
+
+    <%- include('partials/header') %>
+
+    <div class="container">
+        <main class="row text-center">
+            <p>An error has occured.</p>
+            <div>
+                <% if(error !== null){ %>
+                    <p><%= error.status %></p>
+                    <p><%= error.stack %></p>
+                <% } %>
+            </div>
+        </main>
+    </div>
+
+    <%- include('partials/footer') %>
+
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body>
+
+    <%- include('partials/header') %>
+
+    <section name="jumbotron" >
+        <div class="jumbotron text-center">
+            <h1>TwitBot</h1>
+            <p>Best guide threads for twitter!</p>
+            <p>
+                <a class="btn btn-primary btn-lg" role="button">Learn more
+                    &raquo;</a>
+            </p>
+        </div>
+    </section>
+
+    <div class="container">
+        <form>
+            <div class="row">
+              <div class="col">
+                <label for="filename" class="sr-only">File name</label>
+                <input type="text" class="form-control" name="filename" id="filename" placeholder="File name" required>
+              </div>
+              <div class="col">
+                    <button type="submit" class="btn btn-primary btn-block">Start Tweeting!</button>
+              </div>
+            </div>
+        </form>
+    </div>
+
+    <%- include('partials/footer') %>
+
+  </body>
+</html>
