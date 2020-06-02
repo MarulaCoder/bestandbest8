@@ -4,35 +4,93 @@
     <%- include('partials/head') %>
   </head>
   <body>
+    <div class="wrapper">
+      <!-- Sidebar Holder -->
+      <%- include('partials/sidenav') %>
+      <!-- Sidebar Nav Ends -->
 
-    <%- include('partials/header') %>
+      <!-- Page Content Holder -->
+      <div id="content">
+        <%- include('partials/header') %>
 
-    <section name="jumbotron" >
-        <div class="jumbotron text-center">
-            <h1>TwitBot</h1>
-            <p>Best guide threads for twitter!</p>
-            <p>
-                <a class="btn btn-primary btn-lg" role="button">Learn more
-                    &raquo;</a>
-            </p>
+        <section name="jumbotron" >
+          <div class="jumbotron text-center">
+              <h1>TwitBot</h1>
+              <p>Best guide threads for twitter!</p>
+              <p>
+                  <a class="btn btn-primary btn-lg" role="button">Learn more
+                      &raquo;</a>
+              </p>
+          </div>
+        </section>
+  
+        <div class="container">
+
+          <!-- // test // -->
+            <form action="/tweet/send" method="post">
+
+              <!-- // Single tweet Checkbox // -->
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="isOnceOffTweet" id="isOnceOffTweet">
+                  <label class="form-check-label" for="isOnceOffTweet">
+                    Single Tweet?
+                  </label>
+                </div>
+              </div>
+
+              <!-- // Filename // -->
+              <div class="form-group">
+                <div>
+                  <label for="filename" class="sr-only">File name</label>
+                  <input type="text" class="form-control" name="filename" id="filename" placeholder="File name" required>
+                </div>
+                <div>
+                      
+                </div>
+              </div>
+
+              <!-- // Text Area // -->
+              <div class="form-group">
+                <label for="singleTweetText" class="sr-only">Single Tweet Text</label>
+                <textarea class="form-control" name="singleTweetText" id="singleTweetText" rows="3"></textarea>
+              </div>
+
+              <!-- // Submit Button // -->
+              <button type="submit" class="btn btn-primary btn-block">Start Tweeting!</button>
+            </form>
         </div>
-    </section>
 
-    <div class="container">
-        <form action="/tweet/send" method="post">
-            <div class="row">
-              <div class="col">
-                <label for="filename" class="sr-only">File name</label>
-                <input type="text" class="form-control" name="filename" id="filename" placeholder="File name" required>
-              </div>
-              <div class="col">
-                    <button type="submit" class="btn btn-primary btn-block">Start Tweeting!</button>
-              </div>
-            </div>
-        </form>
+        <%- include('partials/footer') %>
+
+      </div>
+      <!-- Page Content Holder Ends -->
+
     </div>
-
-    <%- include('partials/footer') %>
-
   </body>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      debugger;
+      //toogle sidebar
+      $('#sidebarCollapse').on('click', function() {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+      });
+
+      //on single tweet
+      $('#isOnceOffTweet').change(() => {
+        if($('#isOnceOffTweet').is(":checked"))
+        {
+          $('#filename').attr('disabled', true);
+          $("#filename").val('');
+        }
+        else
+        {
+          $('#filename').attr('disabled', false);
+        }
+      });
+    });
+  </script>
 </html>

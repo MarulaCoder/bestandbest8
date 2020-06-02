@@ -4,61 +4,77 @@
     <%- include('partials/head') %>
   </head>
   <body>
+    <div class="wrapper">
+      <!-- Sidebar Holder -->
+      <%- include('partials/sidenav') %>
+      <!-- Sidebar Nav Ends -->
 
-    <%- include('partials/header') %>
+      <!-- Page Content Holder -->
+      <div id="content">
+        <%- include('partials/header') %>
 
-    <section name="jumbotron" >
-        <div class="jumbotron text-center">
-            <h1>TwitBot</h1>
-            <p>Best guide threads for twitter!</p>
-            <p>
-                <a class="btn btn-primary btn-lg" role="button">Learn more
-                    &raquo;</a>
-            </p>
-        </div>
-    </section>
-
-    <div class="container">
-        <form class="needs-validation" novalidate action="/file/upload" 
-        enctype="multipart/form-data" method="post">
-            <div class="form-row">
-                <div class="col-md-3 mb-3">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="fileupload" id="fileupload" required>
-                        <label class="custom-file-label" for="fileupload">Choose file...</label>
-                        <div class="invalid-feedback">Example invalid custom file feedback</div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="filename" class="sr-only">File name</label>
-                    <input type="text" class="form-control" name="filename" id="filename" placeholder="File name" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">
-                                <input type="checkbox" name="tweetnow" id="tweetnow">
-                            </span>
+        <section name="jumbotron" >
+          <div class="jumbotron text-center">
+              <h1>TwitBot</h1>
+              <p>Best guide threads for twitter!</p>
+              <p>
+                  <a class="btn btn-primary btn-lg" role="button">Learn more
+                      &raquo;</a>
+              </p>
+          </div>
+        </section>
+  
+        <div class="container">
+            <form class="needs-validation" novalidate action="/file/upload" 
+            enctype="multipart/form-data" method="post">
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="fileupload" id="fileupload" required>
+                            <label class="custom-file-label" for="fileupload">Choose file...</label>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
                         </div>
-                        <input type="text" class="form-control" placeholder="Tweet Now?" aria-label="" aria-describedby="basic-addon1" disabled>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="filename" class="sr-only">File name</label>
+                        <input type="text" class="form-control" name="filename" id="filename" placeholder="File name" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <input type="checkbox" name="tweetnow" id="tweetnow">
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Tweet Now?" aria-label="" aria-describedby="basic-addon1" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <button type="submit" class="btn btn-primary btn-block">Upload File</button>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <button type="submit" class="btn btn-primary btn-block">Upload File</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
+    
+        <%- include('partials/footer') %>
 
-        <!-- // test // -->
-
-        
-
+      </div>
+      <!-- Page Content Holder Ends -->
     </div>
-
-    <%- include('partials/footer') %>
-
   </body>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+
+      $('#sidebarCollapse').on('click', function() {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+      });
+    });
+  </script>
 </html>
