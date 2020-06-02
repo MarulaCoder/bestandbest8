@@ -1,0 +1,7 @@
+{
+    "first" : "Thread tweet 1/3",
+    "subsequent" : [
+        "Thread tweet 2/3",
+        "Thread tweet 3/3"
+    ]
+}

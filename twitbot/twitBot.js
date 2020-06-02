@@ -65,10 +65,11 @@ let post_promise = require('util').promisify( // Wrap post function w/ promisify
     };
   };
   
- exports.sendTweet = (jsonData) => { 
+ exports.sendThreadTweet = (jsonData) => { 
      
     var first = jsonData['first'];
     var subsequent = jsonData['subsequent'];
+    //var webUrl = new URL(jsonData['weburl']);
     var webUrl = jsonData['weburl'];
     var hashTag = jsonData['hashtag'];
 
@@ -85,6 +86,33 @@ let post_promise = require('util').promisify( // Wrap post function w/ promisify
             console.log(`${top_tweet[0].text} tweeted!`);
             let starting_id = top_tweet[0].id_str; // Get top-line tweet ID...
             tweet_crafter(subsequent, starting_id, webUrl, hashTag);
+        })
+        .catch(err => console.log(err));
+};
+
+exports.sendSingleTweet = (jsonData) => { 
+     
+    var first = jsonData;
+    //var subsequent = jsonData['subsequent'];
+    //var webUrl = jsonData['weburl'];
+    //var hashTag = jsonData['hashtag'];
+
+    /*
+    T.get('account/verify_credentials', {
+        include_entities: false,
+        skip_status: true,
+        include_email: false
+    }, onAuthenticated);
+    */
+
+    post_promise('statuses/update', { status: `${first}` })
+        .then((top_tweet) => {
+            console.log(`${top_tweet[0].text} tweeted!`);
+            //let starting_id = top_tweet[0].id_str; // Get top-line tweet ID...
+            //tweet_crafter(subsequent, starting_id, webUrl, hashTag);
+            // SUCCESS, image successfully uploaded 
+            //res.send("Success, File uploaded!") 
+            res.render('index', { filename: null, error: null, message: 'Tweet succesfully.' });
         })
         .catch(err => console.log(err));
 };

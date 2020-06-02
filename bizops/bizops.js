@@ -10,7 +10,7 @@ const fs = require('fs');
 
 var assetsDir = path.join(process.cwd(), '/assets/');
 
-exports.readFile = (req, res, next) => {
+exports.sendThreadTweet = (req, res, next) => {
     
     var fileName = req.body.filename;
 
@@ -27,7 +27,7 @@ exports.readFile = (req, res, next) => {
         var jsonData = JSON.parse(data);
 
         // 
-        twitBot.sendTweet(jsonData);
+        twitBot.sendThreadTweet(jsonData);
 
         // Successful, so render.
         res.render('index', { filename: fileName, error: null, message: 'Thread succesfully created.' });
@@ -103,7 +103,7 @@ exports.uploadFile = (req, res, next) => {
             if(req.body.tweetnow)
             {
                 req.body.filename = fileName;
-                this.readFile(req, res, next);
+                this.sendThreadTweet(req, res, next);
             }
 
             // SUCCESS, image successfully uploaded 
@@ -111,4 +111,9 @@ exports.uploadFile = (req, res, next) => {
             res.render('index', { filename: fileName, error: null, message: 'File uploaded succesfully.' });
         } 
     }) 
+};
+
+exports.sendSingleTweet = (req, res, next) => {
+    var tweetText = req.body.singleTweetText.toString();
+    twitBot.sendSingleTweet(tweetText);
 };
